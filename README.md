@@ -9,6 +9,8 @@
 1. When you visit `index.html`, `feedback.js` records presence, page views, and other analytics data that you specify (see `examples.js`) and sends that information to a separate server (climatemojo.com, in this example).
 1. The climatemojo.com domain name points to a DigitalOcean server that's running a simple Express HTTP server (`express.js` in this repository). The DigitalOcean Ubuntu server is built using Terraform and the DigitalOcean API. See the Infrastructure repository for details. The Express server simply logs the data it receives to show that `feedback.js` is working as expected.
 
+![Overview](./overview.png)
+
 Note: The steps below aren't 100% complete, but `~/projects/node` is a basic node/express project, with the addition of `express.js` and `climate.png` from this repository.
 
 ## Test the Express server on localhost before copying to DigitalOcean
