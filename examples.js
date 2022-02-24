@@ -6,7 +6,7 @@
   Feedback.parcel.sendQuickly = true;
   Feedback.parcel.useGetParams = true;
   Feedback.parcel.useSendBeacon = true;
-  Feedback.trackPageviewIds = true
+  Feedback.trackPageviewIds = true;
   Feedback.trackPageviews = true;
   Feedback.trackPresence = false;
 }());
@@ -19,19 +19,19 @@
   loggingIsOn = true;
 
   // When this event fires, the incident won't log again.
-  document.addEventListener("turn_logging_off", function() {loggingIsOn = false});
+  document.addEventListener("turn_logging_off", function() {loggingIsOn = false;});
 
   // When this event fires, the incident will log again.
-  document.addEventListener("turn_logging_on", function() {loggingIsOn = true});
+  document.addEventListener("turn_logging_on", function() {loggingIsOn = true;});
 
   // Feedback's sendIncident attribute is set to a function from this closure, so the value of loggingIsOn is available.
   Feedback.sendIncident = function(name, value) {
     if (loggingIsOn) {
       Feedback.parcel.capture({"incident[][name]": name,
                                "incident[][value]": value});
-      if (Feedback.parcel.collector.length) setTimeout(Feedback.parcel.send, 100)
+      if (Feedback.parcel.collector.length) setTimeout(Feedback.parcel.send, 100);
     }
-  }
+  };
 }());
 
 // -----------------------------------------------------------------------------
@@ -57,8 +57,8 @@
     // Example: <button data-agreement="Yes">I Agree</button>
     document.querySelector("[data-agreement]").addEventListener("click", function() {
       Feedback.sendIncident("agreementForm", "Yes");
-    })
-  })
+    });
+  });
 }());
 
 // -----------------------------------------------------------------------------
@@ -99,7 +99,7 @@
 
   var logPageView = function(pageLoadType) {
     var pageViewLogged = false;
-    var pageviewAttributes = {"pageview[type]": pageLoadType}
+    var pageviewAttributes = {"pageview[type]": pageLoadType};
     if (document.visibilityState === "visible") {
       Feedback.sendPageview(pageviewAttributes);
       pageViewLogged = true;
@@ -109,9 +109,9 @@
           Feedback.sendPageview(pageviewAttributes);
           pageViewLogged = true;
         }
-      })
+      });
     }
-  }
+  };
 
   document.addEventListener("DOMContentLoaded", function() {
     if (initialPageLoad) {
@@ -121,18 +121,18 @@
   });
 
   document.addEventListener("page:load", function() {
-    if (!initialPageLoad) logPageView("Partial page load, case 1")
+    if (!initialPageLoad) logPageView("Partial page load, case 1");
   });
 
   document.addEventListener("partial-page:load", function(event) {
     if (!initialPageLoad && event.originalEvent && event.originalEvent.data.timing.visitStart != null) {
       if (event.originalEvent.data.timing.requestStart != null) {
-        logPageView("Partial page load, case 2")
+        logPageView("Partial page load, case 2");
       } else {
-        logPageView("Partial page load, case 3")
+        logPageView("Partial page load, case 3");
       }
     }
-  })
+  });
 }());
 
 // -----------------------------------------------------------------------------
@@ -144,7 +144,7 @@
         presence: true
       });
       Feedback.parcel.send();
-    }, 300 * 1000) // Interval is 300 seconds; every 5 min.
+    }, 300 * 1000); // Interval is 300 seconds; every 5 min.
   }
 }());
 

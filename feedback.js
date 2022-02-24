@@ -133,7 +133,8 @@ function overrideAttributes(targetObject) {
             } else if (Object.prototype.toString.call(results[key]) === "[object Array]") {
               results[key].push(value);
 
-              // Case 3: The results value is not a collection, so make it an array of both the existing and new values.
+              // Case 3: The results value is not a collection, so make it an array of both the
+              // existing and new values.
             } else {
               results[key] = [results[key], value];
             }
